@@ -2,20 +2,38 @@ const express = require("express");
 
 const app = express();
 
-app.get("/orders", (req,res)=>{
-    res.send("Here list of all orders");
-});
-app.post("/orders", (req, res)=>{
-    res.send("new order created");
+
+// GET /products
+app.get("/products", (req, res) => {
+  res.send("Here is the list of all products.");
 });
 
-app.get("/users", (req,res)=>{
-    res.send("Here is list of all users")
-});
-app.post("/users", (req, res) => {
-  res.send("new user added");
+
+// POST /products
+app.post("/products", (req, res) => {
+  res.send("A new product has been added.");
 });
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+
+// GET /categories
+app.get("/categories", (req, res) => {
+  res.send("Here is the list of all categories.");
+});
+
+
+// POST /categories
+app.post("/categories", (req, res) => {
+  res.send("A new category has been created.");
+});
+
+
+// Handle Unknown Routes (404)
+app.use((req, res) => {
+  res.status(404).send("<h1>404 - Page Not Found</h1>");
+});
+
+
+// Start Server
+app.listen(4000, () => {
+  console.log("Server is running on http://localhost:4000");
 });
