@@ -2,12 +2,11 @@ const express = require("express");
 
 const app = express();
 
-const orderRouter = require('./routes/order');
-const userRouter = require('./routes/users');
+const bookRouter = require('./routes/books');
 
-app.use("/orders" , orderRouter);
+app.use(express.json());
 
-app.use("/users", userRouter);
+app.use("/", bookRouter);
 
 app.listen(3000, ()=>{
     console.log("server runing http://localhost:3000");
