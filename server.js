@@ -2,28 +2,13 @@ const express = require("express");
 
 const app = express();
 
-app.use((req,res,next) => {
-    console.log(`${req.method} request made to ${req.url}`);
-    next();
-});
+const orderRouter = require('./routes/order');
+const userRouter = require('./routes/users');
 
-//Product
-app.get("/products", (req,res) => {
-    res.send("Here is the list of all products.");
-});
-app.post("/products", (req,res)=>{
-    res.send("Here product added");
-});
+app.use("/orders" , orderRouter);
 
-//Categories
-app.get("/categories", (req,res)=>{
-    res.send("Here is list of all categ");
-});
-app.post("/categories" , (req,res)=>{
-    res.send("A new catg created");
-});
+app.use("/users", userRouter);
 
-
-app.listen(4000, ()=>{
-    console.log("server runing http://localhost:4000");
+app.listen(3000, ()=>{
+    console.log("server runing http://localhost:3000");
 })
