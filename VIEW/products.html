@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Products</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
     <h1>Add Products</h1>
 
-    <form>
+    <form id="productForm">
         <label for="product">Product Name</label>
         <input type="text" id="product" name="productName">
 
         <button type="submit">Add Prodcut</button>
     </form>
+
+    <script>
+        const form = document.getElementById("productForm");
+
+        form.addEventListener("submit", async function(e){
+            e.preventDefault();
+            
+            const productName = document.getElementById("product");
+            try{
+                const response = await axios.post("/api/products", {
+                    productName : productName
+                });
+                alert(response.data);
+            }catch(error){
+                console.error(error);
+            }
+        });
+    </script>
 </body>
 </html>
