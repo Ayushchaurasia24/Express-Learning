@@ -1,13 +1,12 @@
-const express = require("express");
-
+const express = require('express');
 const app = express();
 
-const bookRouter = require('./routes/books');
+const path = require("path");
 
-app.use(express.json());
+app.get("/api/products", (req,res) => {
+    res.sendFile(path.join(__dirname, "VIEW", "products.html"));
+});
 
-app.use("/", bookRouter);
-
-app.listen(3000, ()=>{
-    console.log("server runing http://localhost:3000");
-})
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
+});
